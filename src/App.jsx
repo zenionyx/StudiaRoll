@@ -63,7 +63,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5f0eb] p-4">
-      <div className="bg-[#fffaf4] rounded-2xl shadow-lg p-6 w-full max-w-md text-center space-y-6 border border-[#e0d6cc]">
+      <div className="bg-white dark:bg-[#191818] rounded-2xl shadow-lg p-6 w-full max-w-md text-center space-y-6 border border-[#e0d6cc]">
         {/* Display */}
         <div className="text-2xl font-semibold text-[#5c3d2e] min-h-[2rem]">
           {currentLevel ? currentLevel.name : "Press to begin!"}
