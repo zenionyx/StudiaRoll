@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const levels = [
   {
@@ -30,6 +30,20 @@ function App() {
   const [currentLevel, setCurrentLevel] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // 🔁 Load saved level on initial render
+  useEffect(() => {
+    const savedLevel = localStorage.getItem("studyLevel");
+    if (savedLevel) {
+      try {
+        const parsed = JSON.parse(savedLevel);
+        setCurrentLevel(parsed);
+      } catch (err) {
+        console.error("Error parsing saved level:", err);
+      }
+    }
+  }, []);
+
+  // 🎲 Roll new level and save to localStorage
   const handleClick = () => {
     setLoading(true);
     let count = 0;
@@ -41,6 +55,7 @@ function App() {
         clearInterval(interval);
         const chosen = levels[Math.floor(Math.random() * levels.length)];
         setCurrentLevel(chosen);
+        localStorage.setItem("studyLevel", JSON.stringify(chosen)); // 💾 Save to localStorage
         setLoading(false);
       }
     }, 100);
